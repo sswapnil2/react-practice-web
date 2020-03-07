@@ -1,6 +1,15 @@
 import React, { useState } from 'react'
 
-export default function Card(props) {
+export interface CardData {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  onClick?: (id: number) => void
+}
+
+
+export default function Card(props: CardData) {
 
   // const [state, setstate] = useState({
   //   title: "Hello",
@@ -8,6 +17,14 @@ export default function Card(props) {
   //   image: "https://picsum.photos/536/354"
   // })
 
+  const onClick = () => {
+    // alert(props.title);
+    if (props.onClick){
+      props.onClick(props.id);
+    }
+  }
+
+  // console.log(props);
 
     return (
         <div className="col-md-3">
@@ -16,7 +33,7 @@ export default function Card(props) {
           <div className="card-body">
             <h5 className="card-title">{props.title}</h5>
             <p className="card-text">{props.description}</p>
-            <a href="dsfd" className="btn btn-primary">click me</a>
+            <button className="btn btn-primary" onClick={onClick} >click me</button>
           </div>
         </div>
         </div>
